@@ -1,0 +1,7 @@
+CREATE TABLE LIWC
+(
+	word VARCHAR(60) NOT NULL,
+	type VARCHAR(60) NOT NULL,
+	CONSTRAINT PRIMARY KEY liwc_pk(word,type)
+) ENGINE=InnoDB;
+
