@@ -4,8 +4,10 @@ import re
 
 essay_data_file_path = "Essays data/essays.csv"
 essay_data_output_path = "Essays data/essays_updated.csv"
-
+classification_data_path = "Essays data/classification_data.csv"			
+personality_categories = ["cEXT","cNEU","cAGR","cCON","cOPN"]			
 DEBUG = False
+
 
 def compute_scores_for_essays(essay, liwc_categories, liwc_trie):
 	liwc_scores = dict()
@@ -40,6 +42,19 @@ def compute_scores_for_essays(essay, liwc_categories, liwc_trie):
 		scores.append(value)
 	return scores
 
+def create_classification_data(all_data, liwc_categories):
+	dataset_rows = []
+	with open(classification_data_path, 'w') as csvoutput:
+		writer = csv.writer(csvoutput)
+		attribute_list = personality_categories + liwc_categories
+		l = len(attribute_list)
+		for row in all_data:
+			r = row[2:7] + row[7:]
+			if len(r)!=l:
+				print "len not equal " + str(len(r) - l)
+			else:
+				dataset_rows.append(r)
+		writer.writerows(dataset_rows)
 
 def generate_scored_essay_data():
 	liwc_categories = get_list_of_liwc_categories()
@@ -62,10 +77,11 @@ def generate_scored_essay_data():
 				all_data.append(dummy_row)
 				if DEBUG:
 					print(dummy_row)
-			
+			create_classification_data(all_data, liwc_categories)
 			writer.writerows(all_data)
 
 def main():
+	
 	generate_scored_essay_data()
 
 if __name__ == '__main__':

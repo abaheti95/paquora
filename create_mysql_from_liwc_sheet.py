@@ -34,7 +34,7 @@ def main():
 					add_word(liwc_sheet.cell_value(curr_row, curr_col), word_type)
 				curr_row += 1
 		curr_col += 1
-		print curr_col + ": " +  word_type 
+		print str(curr_col) + ": " +  word_type 
 	# Commit changes
 
 
