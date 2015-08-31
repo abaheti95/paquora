@@ -11,6 +11,8 @@ def rate_essays(essay):
 	average_score = 0
 	if count != 0:
 		average_score = score/count
+	else:
+		print "No Word in this essay"
 	return average_score
 
 
