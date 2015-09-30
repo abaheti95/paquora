@@ -1,22 +1,34 @@
 exec(open("liwc.py").read())
 import csv
 import re
+from nltk.tokenize import word_tokenize
+from wordsegment import segment
 
 essay_data_file_path = "Essays data/essays.csv"
 essay_data_output_path = "Essays data/essays_updated.csv"
 classification_data_path = "Essays data/classification_data.csv"			
 personality_categories = ["cEXT","cNEU","cAGR","cCON","cOPN"]			
-DEBUG = False
+DEBUG = True
 
+def custom_word_tokenize(essay):
+	# First split by spaces
+	possible_words = essay.split()
+	# Now use segment function from wordsegment library
+	words = []
+	for possible_word in possible_words:
+		words.extend(segment(possible_word))
+	return words
 
 def compute_scores_for_essays(essay, liwc_categories, liwc_trie):
 	liwc_scores = dict()
 	for category in liwc_categories:
 		liwc_scores[category] = 0
 
+	# Segment the words Present in the essay
+	words_in_essay = custom_word_tokenize(essay)
+	# print (essay)
+	# words_in_essay = segment(essay)
 	# Traverse the text word by word and count the words in each category
-	essay = essay.replace("\\'", "")
-	words_in_essay = re.compile("[^A-Za-z]").split(essay)
 	if DEBUG:
 		print(words_in_essay)
 	for word in words_in_essay:
@@ -38,7 +50,7 @@ def compute_scores_for_essays(essay, liwc_categories, liwc_trie):
 				liwc_scores[value[1][i]] += 1
 	
 	scores = []
-	for key, value in liwc_scores.iteritems():
+	for key, value in liwc_scores.items():
 		scores.append(value)
 	return scores
 
@@ -51,7 +63,7 @@ def create_classification_data(all_data, liwc_categories):
 		for row in all_data:
 			r = row[2:7] + row[7:]
 			if len(r)!=l:
-				print "len not equal " + str(len(r) - l)
+				print("len not equal ",(len(r) - l))
 			else:
 				dataset_rows.append(r)
 		writer.writerows(dataset_rows)
@@ -61,10 +73,12 @@ def generate_scored_essay_data():
 	liwc_trie = create_trie_data_structure()
 	
 	head_row = []
-	with open(essay_data_file_path, 'rb') as csvinput:
+	with open(essay_data_file_path, 'r', encoding='utf-8') as csvinput:
 		with open(essay_data_output_path, 'w') as csvoutput:
 			writer = csv.writer(csvoutput)
 			reader = csv.reader(csvinput)
+			print("Printing Here!!")
+			print(reader)
 			head_row = next(reader)
 			all_data = []
 			head_row.extend(liwc_categories)
@@ -75,8 +89,8 @@ def generate_scored_essay_data():
 				dummy_row = row
 				dummy_row.extend(scores)
 				all_data.append(dummy_row)
-				if DEBUG:
-					print(dummy_row)
+				# if DEBUG:
+					# print(dummy_row)
 			create_classification_data(all_data, liwc_categories)
 			writer.writerows(all_data)
 

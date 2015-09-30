@@ -1,10 +1,10 @@
-import MySQLdb
-execfile("trie.py")
+import mysql.connector
+from trie import StringTrie
 
 DEBUG = False
 def create_trie_data_structure():
 	# open database
-	liwc_db = MySQLdb.connect("localhost","nlp","nlppassword","nlp")
+	liwc_db = mysql.connector.connect(host="localhost",user="nlp",password="nlppassword",database="nlp")
 	cursor = liwc_db.cursor()
 	t = StringTrie();
 	
@@ -13,25 +13,25 @@ def create_trie_data_structure():
 	# generating Trie data structure
 	if DEBUG:
 		print("Creating Data Structure")
-	for entry in liwc_data_list:
+	for (Word, Type) in liwc_data_list:
 		starString = False
-		if entry[0].find('*') == -1:
+		if Word.find('*') == -1:
 			starString = False
 		else:
 			starString = True
-		withoutStar = entry[0].replace("*","")
+		withoutStar = Word.replace("*","")
 		if DEBUG:
-			print(withoutStar + " " + entry[0])
-			print(entry[1])
+			print(withoutStar," ",Word)
+			print(Type)
 		if t.has_node(withoutStar):
 			dummy_list = t[withoutStar]
-			dummy_list.append(entry[1])
+			dummy_list.append(Type)
 			t.setdefault(withoutStar,dummy_list)
 		else:
 			dummy_list = list()
 			if starString:
 				dummy_list.append("*")
-			dummy_list.append(entry[1])
+			dummy_list.append(Type)
 			t.setdefault(withoutStar,dummy_list)
 		if DEBUG:
 			print("Print the value just added : ")
@@ -41,16 +41,15 @@ def create_trie_data_structure():
 
 def get_list_of_liwc_categories():
 	# open database
-	liwc_db = MySQLdb.connect("localhost","nlp","nlppassword","nlp")
+	liwc_db = mysql.connector.connect(host="localhost",user="nlp",password="nlppassword",database="nlp")
 	cursor = liwc_db.cursor()
 
 	cursor.execute("SELECT DISTINCT type FROM LIWC")
-	data = cursor.fetchall();
 
 	liwc_categories = []
 
-	for entry in data:
-		liwc_categories.append(entry[0])
+	for Type in cursor:
+		liwc_categories.append(Type[0])
 
 	liwc_db.close()
 	return liwc_categories
