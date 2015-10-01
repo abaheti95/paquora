@@ -38,7 +38,7 @@ class Plotfeatures(object):
 		plt.scatter(class1['x'], class1['y'], s=size, c= ['Red']*len(class1['x']), alpha=0.5, marker= 'v')
 		plt.scatter(class2['x'], class2['y'], s=size, c= ['Blue']*len(class2['x']), alpha=0.5, marker= 'o')
 		plt.xlabel("Essay")
-		plt.ylabel(label + " value")
+		plt.ylabel(self.label + " value")
 	"""
 		the following function shows the user a the figure
 	"""
