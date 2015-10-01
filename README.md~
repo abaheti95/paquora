@@ -13,4 +13,4 @@ AFINN is a list of English words rated for valence with an integer between minus
 ### Dependancies
 This project uses a lot of different tools and libraries as listed below,
 * Python3 wordsegment - https://pypi.python.org/pypi/wordsegment
-For plotting the project uses matplotlib library
+
