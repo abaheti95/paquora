@@ -36,6 +36,8 @@ class Plotfeatures(object):
 		self.figure.canvas.set_window_title(self.label)
 		plt.scatter(class1['x'], class1['y'], s=size, c= ['Red']*len(class1['x']), alpha=0.5, marker= 'v')
 		plt.scatter(class2['x'], class2['y'], s=size, c= ['Blue']*len(class2['x']), alpha=0.5, marker= 'o')
+		plt.xlabel("Essay")
+		plt.ylabel(label + " value")
 	"""
 		the following function shows the user a the figure
 	"""
@@ -48,7 +50,7 @@ class Plotfeatures(object):
 	def save_fig(self, path= "plots/"):
 		self.figure.savefig(path+self.label+".png")
 
-""" below is an example code to demonstrate the above code """
+""" below is an example code to demonstrate the above class """
 a = [(1,2,0), (2,3,1)]
 p1 = Plotfeatures(a, "1")
 p1.plot_data(10)

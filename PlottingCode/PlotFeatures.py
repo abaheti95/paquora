@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 class Plotfeatures(object):
 	"""
 		data is assumed to be a list of tuples such that (a, b, c) is a tuple in it then a is the essay id and b is the value of the feature c is the class in which the person falls
+		choose label to be the feature that you are plotting
 	"""
 	def __init__(self, data = [], label = "none"):
 		self.data = data
@@ -36,6 +37,8 @@ class Plotfeatures(object):
 		self.figure.canvas.set_window_title(self.label)
 		plt.scatter(class1['x'], class1['y'], s=size, c= ['Red']*len(class1['x']), alpha=0.5, marker= 'v')
 		plt.scatter(class2['x'], class2['y'], s=size, c= ['Blue']*len(class2['x']), alpha=0.5, marker= 'o')
+		plt.xlabel("Essay")
+		plt.ylabel(label + " value")
 	"""
 		the following function shows the user a the figure
 	"""
