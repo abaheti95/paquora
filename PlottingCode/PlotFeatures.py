@@ -17,7 +17,7 @@ class Plotfeatures(object):
 		size is the size of each point you want in the plot
 	"""
 	def plot_data(self, size = 100):
-		self.data.sort()
+		self.data.sort(key=lambda tup: tup[1])  # sorts in place
 		data_list = map(list, zip(*self.data))
 		class1 = dict()
 		class2 = dict()
@@ -28,10 +28,10 @@ class Plotfeatures(object):
 		
 		for i in range(0, len(data_list[2])):
 			if data_list[2][i] == 1:
-				class1['x'].append(data_list[0][i])
+				class1['x'].append(i)
 				class1['y'].append(data_list[1][i])
 			else:
-				class2['x'].append(data_list[0][i])
+				class2['x'].append(i)
 				class2['y'].append(data_list[1][i])
 
 		self.figure.canvas.set_window_title(self.label)
@@ -58,7 +58,7 @@ p1.plot_data(10)
 p1.show_fig()
 p1.save_fig()
 
-b = [(2,3,0), (1,1,1)]
+b = [(7, 8, 1), (4, 10, 0), (6, 11, 1)]
 p2 = Plotfeatures(b, "2")
 p2.plot_data()
 p2.show_fig()
