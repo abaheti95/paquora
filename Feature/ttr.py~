@@ -1,0 +1,31 @@
+# Rahul Gurnani 
+import nltk
+import string
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+
+""" removed the stopwords and the punctuations"""
+
+punctuations = ['.', ',','{', '(', '-', '!', '?', ':']
+def get_typetokenratio(text):
+	words = nltk.word_tokenize(text)
+	types = dict()
+	stop = stopwords.words('english')
+	for word in words:
+		if word in punctuations or word in stop:
+			continue
+		if word in types:
+			types[word] += 1
+		else:
+			types[word] = 1
+	total_words = 0
+	
+	for t in types:
+		total_words += types[t]
+
+	ttr = len(types)/(total_words*1.0)
+	return ttr
+
+ttr = get_typetokenratio("rahul is student, he is in kgp. we love girls.")
+print ttr
