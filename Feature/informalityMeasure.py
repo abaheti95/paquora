@@ -20,7 +20,7 @@ def getIFMeasure(text):
 		interjection_count = interjection_count + getInterjectionCount(sent)
 		wrong_word_count = wrong_word_count + getWrongWordCount(sent)
 		emoticon_count = emoticon_count + getEmoticonCount(sent)
-	informality_measure = (interjection_count+wrong_word_count+emoticon_count)*100
+	informality_measure = (interjection_count + wrong_word_count + emoticon_count)*100
   	return (informality_measure,interjection_count,wrong_word_count)
 
 def getInterjectionCount(sentence):

@@ -1,4 +1,5 @@
-exec(open("liwc.py").read())
+import liwc
+import all_features
 import csv
 import re
 from nltk.tokenize import word_tokenize
@@ -8,7 +9,7 @@ essay_data_file_path = "Essays data/essays.csv"
 essay_data_output_path = "Essays data/essays_updated.csv"
 classification_data_path = "Essays data/classification_data.csv"			
 personality_categories = ["cEXT","cNEU","cAGR","cCON","cOPN"]			
-DEBUG = True
+DEBUG = False
 
 def custom_word_tokenize(essay):
 	# First split by spaces
@@ -69,10 +70,13 @@ def create_classification_data(all_data, liwc_categories):
 		writer.writerows(dataset_rows)
 
 def generate_scored_essay_data():
-	liwc_categories = get_list_of_liwc_categories()
-	liwc_trie = create_trie_data_structure()
+	liwc_categories = liwc.get_list_of_liwc_categories()
+	liwc_trie = liwc.create_trie_data_structure()
 	
+	feature_labels = all_features.get_all_feature_labels()
+
 	head_row = []
+	iteration = 0
 	with open(essay_data_file_path, 'r', encoding='utf-8') as csvinput:
 		with open(essay_data_output_path, 'w') as csvoutput:
 			writer = csv.writer(csvoutput)
@@ -82,20 +86,24 @@ def generate_scored_essay_data():
 			head_row = next(reader)
 			all_data = []
 			head_row.extend(liwc_categories)
+			head_row.extend(feature_labels)
 			all_data.append(head_row)
 			for row in reader:
 				# compute LIWC Counts for individual categories
 				scores = compute_scores_for_essays(row[1], liwc_categories, liwc_trie)
+				features = all_features.get_all_features(row[1])
 				dummy_row = row
 				dummy_row.extend(scores)
+				dummy_row.extend(features)
 				all_data.append(dummy_row)
 				# if DEBUG:
 					# print(dummy_row)
+				print("essay", iteration)
+				iteration += 1
 			create_classification_data(all_data, liwc_categories)
 			writer.writerows(all_data)
 
 def main():
-	
 	generate_scored_essay_data()
 
 if __name__ == '__main__':
