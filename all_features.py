@@ -7,16 +7,27 @@ import string
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
 
+words_custom = []
+sentence_list = []
+pos_tags = []
+
 # Author Ashutosh
 # Contributions : WordTokenizer, PreferenceForLongerWordsFeatures, PunctuationsCount
+from enchant.tokenize import get_tokenizer, HTMLChunker
 def custom_word_tokenize(text):
+	tokenizer = get_tokenizer("en_US")
+	words = []
+	for w in tokenizer(text):
+		words.append(w[0])
+	return words
+	"""# print("Ek baar")
 	# First split the text by spaces
 	possible_words = text.split()
 	# Now use segment function from wordsegment library
 	words = []
 	for possible_word in possible_words:
 		words.extend(segment(possible_word))
-	return words
+	return words"""
 
 """
 Takes the list of words in the text as input and calculates the number of words of length greater than equal 6,7,8,9
@@ -24,7 +35,7 @@ Takes the list of words in the text as input and calculates the number of words 
 :returns: tuple of integer counts
 """
 def pref_for_longer_words(text):
-	words = custom_word_tokenize(text)
+	words = words_custom
 	count_6 = 0
 	count_7 = 0
 	count_8 = 0
@@ -49,7 +60,7 @@ Takes the text and number of sentences as input and counts the number of punctua
 """
 punctuations = ['.', '"',"'",'{','(','-','!','?',':']
 def count_punctuations(text):
-	num_sentences = len(sent_tokenize(text))
+	num_sentences = len(sentence_list)
 	dots = text.count('.')
 	punct_count = 0
 	for punctuation in punctuations:
@@ -72,8 +83,8 @@ I am taking not taking punctuations as words and hence removed it. If you need t
 def getWordsPerSentence(text):
 	word_count = 0
 	word_sent_list = []
-	number_sentences = len(sent_tokenize(text))
-	number_words = len(custom_word_tokenize(text))
+	number_sentences = len(sentence_list)
+	number_words = len(words_custom)
 	return (number_words/number_sentences)
 """
 I-Measure = (Wrong-typed Words freq. + Interjections freq. + Emoticon freq. ) * 100
@@ -82,21 +93,14 @@ Using nltk package
 Currently emoticon parser is not implemented.
 """
 def getIFMeasure(text):
-	wrong_word_count = 0
-	interjection_count = 0
-	emoticon_count = 0
-	sent_tokenize_list = sent_tokenize(text)
-	for sent in sent_tokenize_list:
-		interjection_count = interjection_count + getInterjectionCount(sent)
-		wrong_word_count = wrong_word_count + getWrongWordCount(sent)
-		emoticon_count = emoticon_count + getEmoticonCount(sent)
+	emoticon_count = getEmoticonCount(text)
+	interjection_count = getInterjectionCount(text)
+	wrong_word_count = getWrongWordCount(text)
 	informality_measure = (interjection_count + wrong_word_count + emoticon_count)*100
 	return informality_measure, interjection_count, wrong_word_count
 
-def getInterjectionCount(sentence):
-	text = nltk.word_tokenize(sentence)
-	# print sentence
-	tuples = nltk.pos_tag(text)
+def getInterjectionCount(text):
+	tuples = pos_tags
 	intCount = 0
 	for t in tuples:
 		if t[1]=="UH":
@@ -104,15 +108,17 @@ def getInterjectionCount(sentence):
 			intCount = intCount+1
 	return intCount
 
-def getWrongWordCount(sentence):
+def getWrongWordCount(text):
 	US_spell_dict = enchant.Dict("en_US")
 	British_spell_dict = enchant.Dict("en_GB")
-	words_list = custom_word_tokenize(sentence)
+	words_list = words_custom
 	wrongCount = 0
 	for word in words_list:
 		if US_spell_dict.check(word) == False and British_spell_dict.check(word) == False:
 			# print "Bad ",word
+			# print("Wrong word : ",word)
 			wrongCount = wrongCount + 1
+	# print("Wrong word count : ",wrongCount)
 	return wrongCount
 
 def getEmoticonCount(sentence):
@@ -122,7 +128,7 @@ def getEmoticonCount(sentence):
 # Author Rahul
 # Contributions : TypeByTokenRatio
 def gettr_ratio(text):
-	words = custom_word_tokenize(text)
+	words = words_custom
 	return len(set(words))*1.0/len(words)
 
 # Author Dhruv
@@ -131,10 +137,9 @@ def gettr_ratio(text):
 F-Measure = (noun frequency + adjective freq.   + preposition freq.   + article freq.   -
 pronoun freq. - verb freq. - adverb freq. - interjection freq. + 100)/2
 """
-def getcounts(sentence):
-	text = nltk.word_tokenize(sentence)
+def getcounts(text):
 	# print sentence
-	tuples = nltk.pos_tag(text)
+	tuples = pos_tags
 	noun_count = 0 #NN
 	adj_count=0 #JJ
 	preposition_count=0 #IN
@@ -181,18 +186,16 @@ def getFMeasure(text):
 	adverb_count=0 #RB
 	interjection_count = 0 #UH
 
-	sent_tokenize_list = sent_tokenize(text)
-	for sent in sent_tokenize_list:
-		result = []
-		result = getcounts(sent)
-		noun_count+=result[0]
-		adj_count+=result[1]
-		preposition_count+=result[2]
-		pronoun_count+=result[3]
-		verb_count+=result[4]
-		adverb_count+=result[5]
-		interjection_count+=result[6]
-		article_count+=result[7]
+	result = []
+	result = getcounts(text)
+	noun_count+=result[0]
+	adj_count+=result[1]
+	preposition_count+=result[2]
+	pronoun_count+=result[3]
+	verb_count+=result[4]
+	adverb_count+=result[5]
+	interjection_count+=result[6]
+	article_count+=result[7]
 
 	FMeasure = (noun_count+ adj_count  + preposition_count+article_count- pronoun_count - verb_count - adverb_count - interjection_count + 100)/2
 	return FMeasure
@@ -202,7 +205,7 @@ tentative_list=['may' ,'might','maybe','mightbe','can','could' \
 'credible','obtainable','probably']
 
 def gettentMeasure(text):	
-	words = custom_word_tokenize(text)
+	words = words_custom
 	c = 0
 	for word in words:
 		if word in tentative_list:
@@ -212,8 +215,7 @@ def gettentMeasure(text):
 # Author Sabyasachee
 # Contributions : past tense, present tense and future tense counts
 def tense_count(text):
-	words = nltk.word_tokenize(text)
-	pos_tagged_text = pos_tag(words)
+	pos_tagged_text = pos_tags
 	VB = []
 	VBD = []
 	VBG = []
@@ -267,11 +269,16 @@ def get_all_feature_labels():
 	return feature_labels
 
 def get_all_features(text):
-	global words_nltk
 	global words_custom
-	words_nltk = nltk.word_tokenize(text)
+	global sentence_list
+	global pos_tags
 	words_custom = custom_word_tokenize(text)
-	
+	sentence_list = nltk.sent_tokenize(text)
+	pos_tags = nltk.pos_tag(words_custom)
+
+	number_words = len(words_custom)
+	number_sentences = len(sentence_list)
+
 	features = []
 	# Type By Token Ratio
 	type_by_token_ratio = gettr_ratio(text)

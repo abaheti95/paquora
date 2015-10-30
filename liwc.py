@@ -37,7 +37,44 @@ def create_trie_data_structure():
 			print("Print the value just added : ")
 			print(t[withoutStar])
 	liwc_db.close()
-	return t;
+	return t
+
+def create_liwc_dict():
+	# open database
+	liwc_db = mysql.connector.connect(host="localhost",user="nlp",password="nlppassword",database="nlp")
+	cursor = liwc_db.cursor()
+	
+	cursor.execute("SELECT * FROM LIWC")
+	liwc_data_list = cursor.fetchall()
+	# generating Trie data structure
+	t = {}
+	if DEBUG:
+		print("Creating Data Structure")
+	for (Word, Type) in liwc_data_list:
+		starString = False
+		if Word.find('*') == -1:
+			starString = False
+		else:
+			starString = True
+		withoutStar = Word.replace("*","")
+		if DEBUG:
+			print(withoutStar," ",Word)
+			print(Type)
+		if withoutStar in t:
+			dummy_list = t[withoutStar]
+			dummy_list.append(Type)
+			t[withoutStar] = dummy_list
+		else:
+			dummy_list = list()
+			if starString:
+				dummy_list.append("*")
+			dummy_list.append(Type)
+			t[withoutStar] = dummy_list
+		if DEBUG:
+			print("Print the value just added : ")
+			print(t[withoutStar])
+	liwc_db.close()
+	return t
 
 def get_list_of_liwc_categories():
 	# open database

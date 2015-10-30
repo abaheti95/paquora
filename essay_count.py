@@ -11,13 +11,12 @@ classification_data_path = "Essays data/classification_data.csv"
 personality_categories = ["cEXT","cNEU","cAGR","cCON","cOPN"]			
 DEBUG = False
 
-def custom_word_tokenize(essay):
-	# First split by spaces
-	possible_words = essay.split()
-	# Now use segment function from wordsegment library
+from enchant.tokenize import get_tokenizer, HTMLChunker
+def custom_word_tokenize(text):
+	tokenizer = get_tokenizer("en_US")
 	words = []
-	for possible_word in possible_words:
-		words.extend(segment(possible_word))
+	for w in tokenizer(text):
+		words.append(w[0])
 	return words
 
 def compute_scores_for_essays(essay, liwc_categories, liwc_trie):
@@ -51,8 +50,8 @@ def compute_scores_for_essays(essay, liwc_categories, liwc_trie):
 				liwc_scores[value[1][i]] += 1
 	
 	scores = []
-	for key, value in liwc_scores.items():
-		scores.append(value)
+	for category in liwc_categories:
+		scores.append(liwc_scores[category])
 	return scores
 
 def create_classification_data(all_data, liwc_categories):
@@ -103,8 +102,42 @@ def generate_scored_essay_data():
 			create_classification_data(all_data, liwc_categories)
 			writer.writerows(all_data)
 
+def check_word_tokenizer():
+	liwc_categories = liwc.get_list_of_liwc_categories()
+	liwc_trie = liwc.create_trie_data_structure()
+	print(liwc_categories)
+	with open(essay_data_file_path, 'r', encoding='utf-8') as csvinput:
+		reader = csv.reader(csvinput)
+		head_row = next(reader)
+		for row in reader:
+			text = row[1]
+			print(custom_word_tokenize(text))
+			scores = compute_scores_for_essays(text, liwc_categories, liwc_trie)
+			
+			idx = 0
+			for category in liwc_categories:
+				print(category,scores[idx])
+				idx+=1
+			sleep(10)
+
+def check_pos_tagging():
+	with open(essay_data_file_path, 'r', encoding='utf-8') as csvinput:
+		reader = csv.reader(csvinput)
+		head_row = next(reader)
+		for row in reader:
+			text = row[1]
+			words_custom = custom_word_tokenize(text)
+			words_nltk = nltk.word_tokenize(text)
+			pos_tag_custom = nltk.pos_tag(words_custom)
+			print(words_nltk)
+			print(pos_tag_custom)
+			sleep(10)
+
+
 def main():
 	generate_scored_essay_data()
+	# check_word_tokenizer()
+	# check_pos_tagging()
 
 if __name__ == '__main__':
 	main()
