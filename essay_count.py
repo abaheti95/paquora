@@ -50,18 +50,19 @@ def compute_scores_for_essays(essay, liwc_categories, liwc_trie):
 				liwc_scores[value[1][i]] += 1
 	
 	scores = []
+	number_words = len(words_in_essay)
 	for category in liwc_categories:
-		scores.append(liwc_scores[category])
+		scores.append(liwc_scores[category]/number_words)
 	return scores
 
-def create_classification_data(all_data, liwc_categories):
+def create_classification_data(all_data, all_feature_labels):
 	dataset_rows = []
 	with open(classification_data_path, 'w') as csvoutput:
 		writer = csv.writer(csvoutput)
-		attribute_list = personality_categories + liwc_categories
+		attribute_list = personality_categories + all_feature_labels
 		l = len(attribute_list)
 		for row in all_data:
-			r = row[2:7] + row[7:]
+			r = row[2:]
 			if len(r)!=l:
 				print("len not equal ",(len(r) - l))
 			else:
@@ -99,7 +100,10 @@ def generate_scored_essay_data():
 					# print(dummy_row)
 				print("essay", iteration)
 				iteration += 1
-			create_classification_data(all_data, liwc_categories)
+			all_feature_labels = []
+			all_feature_labels.extend(liwc_categories)
+			all_feature_labels.extend(feature_labels)
+			create_classification_data(all_data, all_feature_labels)
 			writer.writerows(all_data)
 
 def check_word_tokenizer():

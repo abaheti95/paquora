@@ -72,6 +72,33 @@ def count_punctuations(text):
 			punct_count += int(text.count(punctuation))
 	return punct_count
 
+""" Richness in vocabulary
+Ref : http://swizec.com/blog/measuring-vocabulary-richness-with-python/swizec/2528
+"""
+from nltk.stem.porter import PorterStemmer
+from itertools import groupby
+
+def vocabulary_richness(text):
+	# yule's I measure (the inverse of yule's K measure)
+	# higher number is higher diversity - richer vocabulary
+	d = {}
+	stemmer = PorterStemmer()
+	words = words_custom
+	for w in words:
+		w = stemmer.stem(w).lower()
+		try:
+			d[w] += 1
+		except KeyError:
+			d[w] = 1
+ 
+	M1 = float(len(d))
+	M2 = sum([len(list(g))*(freq**2) for freq,g in groupby(sorted(d.values()))])
+ 
+	try:
+		return (M1*M1)/(M2-M1)
+	except ZeroDivisionError:
+		return 0
+
 # Author Nishkarsh
 # Contributions : WordsPerSentence
 """
@@ -266,6 +293,8 @@ def get_all_feature_labels():
 	feature_labels.append("number_present_tense")
 	# Punctuation Count
 	feature_labels.append("number_punctuations")
+	# Vocabulary Richness
+	feature_labels.append("vocabulary_richness")
 	return feature_labels
 
 def get_all_features(text):
@@ -289,26 +318,28 @@ def get_all_features(text):
 	# I-Measure
 	i_measure, interjection_count, wrong_word_count = getIFMeasure(text)
 	features.append(i_measure)
-	features.append(interjection_count)
-	features.append(wrong_word_count)
+	features.append(interjection_count / number_words)
+	features.append(wrong_word_count / number_words)
 	# Words Per Sentence
 	words_per_sentence = getWordsPerSentence(text)
 	features.append(words_per_sentence)
 	# Preference to longer words
 	count_6, count_7, count_8, count_9 = pref_for_longer_words(text)
-	features.append(count_6)
-	features.append(count_7)
-	features.append(count_8)
-	features.append(count_9)
+	features.append(count_6 / number_words)
+	features.append(count_7 / number_words)
+	features.append(count_8 / number_words)
+	features.append(count_9 / number_words)
 	# Tentativity
 	tentativity = gettentMeasure(text)
-	features.append(tentativity)
+	features.append(tentativity / number_words)
 	# Tense Count
 	number_past_tense, number_present_tense = tense_count(text)
-	features.append(number_past_tense)
-	features.append(number_present_tense)
+	features.append(number_past_tense / number_words)
+	features.append(number_present_tense / number_words)
 	# Punctuation Count
 	number_punctuations = count_punctuations(text)
-	features.append(number_punctuations)
-
+	features.append(number_punctuations / number_sentences)
+	# Vocabulary Richness
+	vocabulary_richness_measure = vocabulary_richness(text)
+	features.append(vocabulary_richness_measure)
 	return features
