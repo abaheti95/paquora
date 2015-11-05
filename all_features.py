@@ -4,12 +4,81 @@ import numpy as np
 import enchant
 import nltk
 import string
+import csv
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
 
 words_custom = []
 sentence_list = []
 pos_tags = []
+
+words_posscore = {}
+words_neg={}
+words_pos={}
+func_words=[]
+def init():
+	global words_posscore
+	global words_neg
+	global words_pos
+	global func_words
+
+	words_posscore = {}
+	with open('Feature/pos-neg/words_posscore.csv', 'r', encoding='utf-8') as f:
+		reader = csv.reader(f)
+		for row in reader:
+			words_posscore[row[0]] = float(row[1])
+
+	words_neg={}
+	with open('Feature/pos-neg/negative_words.csv', 'r', encoding='utf-8') as f:
+		reader = csv.reader(f)
+		for row in reader:
+			words_neg[row[0]] = 1
+	
+	words_pos={}
+	with open('Feature/pos-neg/positive_words.csv', 'r', encoding='utf-8') as f:
+		reader = csv.reader(f)
+		for row in reader:
+			words_pos[row[0]]=1
+
+	func_words=[]
+	with open('Feature/func_words.csv', 'r', encoding='utf-8') as f:
+		reader = csv.reader(f)
+		for row in reader:
+			func_words.append(row[0])
+
+def get_pos_score(text):
+	words = words_custom
+	count = 0
+	for word in words:
+		if word in words_posscore:
+			count += words_posscore['word']
+	return count
+
+def get_neg_count(text):
+	words = words_custom
+	count = 0
+	for word in words:
+		if word in words_neg:
+			count += 1
+	return count
+
+def get_pos_count(text):
+	words = words_custom
+	count = 0
+	for word in words:
+		if word in words_pos:
+			count += 1
+	return count
+
+def get_func_count(text):
+	words = words_custom
+	count = 0
+	for word in words:
+		if word in func_words:
+			count += 1
+		elif any(word in x for x in func_words):
+			count += 1
+	return count
 
 # Author Ashutosh
 # Contributions : WordTokenizer, PreferenceForLongerWordsFeatures, PunctuationsCount
@@ -295,6 +364,13 @@ def get_all_feature_labels():
 	feature_labels.append("number_punctuations")
 	# Vocabulary Richness
 	feature_labels.append("vocabulary_richness")
+	# Positive score
+	feature_labels.append("positive_score")
+	# Postive and negative words
+	feature_labels.append("positive_words")
+	feature_labels.append("negative_words")
+	# Functional words
+	feature_labels.append("functional_words")
 	return feature_labels
 
 def get_all_features(text):
@@ -342,4 +418,15 @@ def get_all_features(text):
 	# Vocabulary Richness
 	vocabulary_richness_measure = vocabulary_richness(text)
 	features.append(vocabulary_richness_measure)
+	# Positive score
+	positive_score = get_pos_score(text)
+	features.append(positive_score)
+	# Postive and negative words
+	positive_words = get_pos_count(text)
+	negative_words = get_neg_count(text)
+	features.append(positive_words)
+	features.append(negative_words)
+	# Functional words
+	functional_words = get_func_count(text)
+	features.append(functional_words)
 	return features

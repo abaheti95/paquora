@@ -139,6 +139,7 @@ def check_pos_tagging():
 
 
 def main():
+	all_features.init()
 	generate_scored_essay_data()
 	# check_word_tokenizer()
 	# check_pos_tagging()
