@@ -18,6 +18,7 @@ LDA (Latent Dirichlet Allocation) is a topic model. It generates topic from a co
 We used LDA to extend our list of Linguistic Inquiry and Word Count(LIWC) words. Our corpus consisted of documents that had the textual content of quora users’ answers. The number of documents equaled 2000. The number of LIWC words that were used to seed the LDA process is 4488 coming from 64 categories.
 
 The packages involved are - gensim (LDA), pyenchant(Chunker and Tokeniser), numpy(seeded Matrix)
++ lda.py
 The steps involved are -
 	1.	The quora answers are read into lists
 	2.	Each document is processed - case folding, filtering html tags and links, extracting only english words
