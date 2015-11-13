@@ -1,9 +1,9 @@
 Death
-None,death,thinkers,World,F,BBC,drivers,year,driver,s,But,chance,race,Grand,Formula,podcast,killed,
+
 Space
 
 Humans
-I,boys,A,women,
+
 Social Processes
 
 Relativity
@@ -17,59 +17,59 @@ Prepositions
 Personal Pronouns
 
 Health
-sure,human,created,decision,lack,people,It,beings,way,They,Hinduism,The,your,English,
+
 Common Verbs
 
 Future Tense
 
 Past Tense
-I,The,He,
+
 Body
-fashion,flight,oxygen,altitude,aircraft,plane,Inc,
+
 Function Words
 
 Affective Processes
-What,I,people,This,It's,time,question,The,their,say,something,things,You,thing,your,If,
+
 Tentative
 
 Leisure
-pull,mat,I,your,The,ups,If,
+
 First Person Plural Pronouns
-proud,population,
+
 Third Person Plural Pronouns
-list,They,videos,
+
 Inhibition
 
 Hear
-hours,little,recently,I,It's,professors,read,program,At,speed,book,
+
 Negations
-border,language,
+play,
 Nonfluencies
-integrity,
+
 Friends
-Groovy,billion,Work,Concur,Garland's,Green's,Cloud,Acquire,Soul,per,Sales,To,Adderley's,Forbes,Mobley's,Nat,Technologies,SAP,Boost,Matador,Red,
+None,
 Positive Emotion
-A,The,your,If,
+
 Achievement
-learning,language,I,learn,game,way,time,The,your,English,
+
 Fillers
-real,province,cells,Facebook,China,exist,Twitter,
+
 Articles
 
 Anxiety
-Amendment,Training,B,Avenger,service,F,Grob,Beechcraft,Tutor,aircraft,Not,Hawk,Hawker,Siddeley,First,
+
 Total Pronouns
 
 Third Person Singular Pronoun
-The,Deadpool,She,He,
+
 Exclusive
 
 Biological Processes
-Priesthood,time,
+
 Certainty
 
 Work
-school,people,I,work,It,The,their,job,time,way,social,You,your,If,
+
 Motion
 
 Impersonal Pronouns
@@ -77,37 +77,37 @@ Impersonal Pronouns
 Sadness
 
 Ingestion
-A,balls,people,I,choice,serving,green,parking,your,
+
 Second Person Pronouns
-your,
+
 Time
 
 Swear Words
-And,comparison,We,Brett,your,assume,girls,pic,please,pics,famous,iPhone,text,obviously,fame,
+
 Cognitive Processes
 
 Negative Emotion
-multiple,bully,pursue,bullying,subjects,victim,conflict,
+
 Feel
-Zdenek,Richard,Purple,flare,refugee,Casino,Lean,Montreux,blog,Czech,suspect,Deep,Swiss,article,Spicka,Startup,
+
 First Person Singular Pronouns
-And,I,It,But,say,books,time,My,
+
 Religion
-comment,Hacker,posts,topics,argument,topic,visible,likely,including,comments,per,upvote,discussion,However,upvoted,judging,answer,upvotes,intelligent,difficult,This,visibility,middlebrow,stackoverflow,post,News,getting,approach,appreciate,say,optimal,points,obscure,
+
 Family
-Node,Building,Catholic,God,University,js,asking,At,New,The,Times,With,York,
+None,
 Inclusive
 
 Quantifiers
 
 Money
-A,course,I,money,In,their,cost,time,interest,pay,The,your,If,
+
 Causation
 
 Insight
 
 Assent
-printer,actual,D,lyrics,ISS,things,limitless,Parts,printers,future,Anything,
+
 Discrepancy
 
 Conjunctions
@@ -115,14 +115,14 @@ Conjunctions
 Present Tense
 
 See
-RNC,The,Japanese,log,
+
 Adverbs
 
 Numbers
-country,countries,example,F,
+
 Anger
-United,Asia,likely,Europe,Israel,necessarily,nuclear,Russia,weapons,doubt,worldwide,usable,possible,overwhelming,former,South,country,States,costs,greatly,tensions,military,
+
 Home
-house,sleep,year,You,Dogs,belong,environment,their,expected,dogs,pm,division,season,hours,game,Definitely,The,And,last,People,work,dog,teams,points,team,Yes,
+
 Sexual
 
