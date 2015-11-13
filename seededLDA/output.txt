@@ -7,23 +7,23 @@ Humans
 Social Processes
 
 Relativity
-
+the,
 Auxiliary Verbs
-
+the,
 Perceptual Processes
 
 Prepositions
 
 Personal Pronouns
-
+practice,
 Health
-
+I,
 Common Verbs
-
+language,English,
 Future Tense
 
 Past Tense
-
+of,
 Body
 
 Function Words
@@ -33,25 +33,25 @@ Affective Processes
 Tentative
 
 Leisure
-
+the,
 First Person Plural Pronouns
-
+the,
 Third Person Plural Pronouns
-
+the,
 Inhibition
 
 Hear
 
 Negations
-play,
+the,
 Nonfluencies
 
 Friends
-None,
+
 Positive Emotion
-
+None,
 Achievement
-
+the,
 Fillers
 
 Articles
@@ -63,13 +63,13 @@ Total Pronouns
 Third Person Singular Pronoun
 
 Exclusive
-
+the,
 Biological Processes
-
+the,
 Certainty
 
 Work
-
+n,
 Motion
 
 Impersonal Pronouns
@@ -85,17 +85,17 @@ Time
 Swear Words
 
 Cognitive Processes
-
+to,
 Negative Emotion
 
 Feel
-
+x,
 First Person Singular Pronouns
-
+the,
 Religion
-
+the,
 Family
-None,
+
 Inclusive
 
 Quantifiers
@@ -105,9 +105,9 @@ Money
 Causation
 
 Insight
-
+him,
 Assent
-
+she,her,
 Discrepancy
 
 Conjunctions
@@ -117,11 +117,11 @@ Present Tense
 See
 
 Adverbs
-
+the,
 Numbers
-
+the,
 Anger
-
+the,
 Home
 
 Sexual

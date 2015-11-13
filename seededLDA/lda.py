@@ -23,7 +23,7 @@ chunkers = [HTMLChunker]
 filters = [URLFilter,WikiWordFilter]
 tokenizer = get_tokenizer("en_US",chunkers,filters)
 count = 0
-for document in documents[:100]:
+for document in documents[:2000]:
 	try:
 		if document is not None:
 			lowered_document = document.strip().lower()
@@ -92,7 +92,7 @@ for topic_number,topic in enumerate(topics):
 	for word in intersection_words:
 		print word,
 		wordid = dictionary.token2id[word]
-		eta[topic_number][wordid] = 1
+		eta[topic_number][wordid] = 0.01
 	print
 	print
 print "eta parameter created"
