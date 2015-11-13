@@ -33,3 +33,5 @@
 
 # .DS_Store
 .DS_Store
+seededLDA/output.txt
+seededLDA/temp.txt
