@@ -34,3 +34,33 @@ LDA assumes documents are produced from a mixture of topics. Those topics then g
 	1.	Determine the number of words in a document. Let’s say our document has 6 words.
 	2.	Determine the mixture of topics in that document. 
 	3.	Using each topic’s multinomial distribution, output words to fill the document’s word slots. 
+
+Features
+________
+Features:
+
+all_features.py :
+	Extracts all the new features identified besides LIWC. Each method in the file corresponds to some feature calling which we can get the feature value of that corresponding feature 
+
+essay_count.py -:
+	Input: 		Dataset in the form of csv where each row has has text (essays or quoara answers)
+	Output:		return a csv file having a feature vector corresponding to every essay/answer considering all features extracted by all_features			.py and LIWC features
+
+liwc.py:		extracts liwc words along with tags from mysql and creates its trie data structure 
+
+QuraDataSet:
+-----------
+
+	quora_user.csv:	This file contains users and corresponding answers to BFI10 personality score
+	ctrial.py:		This file crawls the Quora answers of users present in quora_user.csv and create a csv file corresponding to all the answers
+	bfi_score.py:	This file calculates the score as given by BFI10 personality standards, So every user gets a score out of 10 for each of 					big five personality measure and writes it into 
+					the csv file of quora_user
+
+Input/Output
+------------
+Input:
+	The input file is present inside Input. It consists of a sample Quora input file that we have crawled and processed.
+
+Output:
+	Output of the system will be a personality score of OCEAN for any input user.For eq. sampleoutput.csv file contains users and their corresponding output personality label for each of the five traits(low, mid, high)
+
