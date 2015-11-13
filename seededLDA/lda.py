@@ -23,7 +23,7 @@ chunkers = [HTMLChunker]
 filters = [URLFilter,WikiWordFilter]
 tokenizer = get_tokenizer("en_US",chunkers,filters)
 count = 0
-for document in documents[:1000]:
+for document in documents:
 	try:
 		if document is not None:
 			lowered_document = document.strip().lower()
@@ -80,23 +80,28 @@ print "collection_frequencies calculated"
 	create quoravocabulary, and eta parameter
 '''
 quoravocabulary = set(dictionary.values())
+print quoravocabulary
 topics = liwc.keys()
 num_topics = len(topics)
 num_words = len(quoravocabulary)
 eta = numpy.full(shape = (num_topics, num_words), dtype = float, fill_value = 0.01)
 for topic_number,topic in enumerate(topics):
 	liwc_words = liwc[topic]
+	print topic, "="
 	intersection_words = quoravocabulary & liwc_words
 	for word in intersection_words:
+		print word,
 		wordid = dictionary.token2id[word]
 		eta[topic_number][wordid] = collection_frequencies[wordid]
+	print
+	print
 print "eta parameter created"
 '''
 	running lda model
 '''
 print "lda process begins"
 ldamodel = gensim.models.ldamulticore.LdaMulticore(corpus, num_topics = num_topics, 
-	id2word = dictionary, passes = 20, eta = eta, workers = 4)
+	id2word = dictionary, passes = 20, eta = eta, workers = 8)
 print "lda process done"
 
 '''
@@ -105,15 +110,24 @@ print "lda process done"
 outputFile = open("output.txt", "w")
 ldaresult = ldamodel.show_topics(num_topics = num_topics, num_words = 1000, formatted = False)
 for topic_number,result in enumerate(ldaresult):
+	result = sorted(result, key = lambda x: x[0], reverse = True)
 	topic = topics[topic_number]
 	words = set()
+	min_probability = None
+	max_probability = None
 	for probability, word in result:
-		if probability < 0.005:
+		if probability < 0.05:
 			break
-		words.add(word)
+		if word not in liwc[topic]:
+			words.add(word)
+			if min_probability is None or min_probability > probability:
+				min_probability = probability
+			if max_probability is None or max_probability < probability:
+				max_probability = probability
+	print topic, "= min:", min_probability, " max:", max_probability
 	outputFile.write(topic)
 	outputFile.write("\n")
-	for word in words - liwc[topic]:
+	for word in words:
 		outputFile.write(word)
 		outputFile.write(",")
 	outputFile.write("\n")
