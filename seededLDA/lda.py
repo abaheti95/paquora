@@ -23,7 +23,7 @@ chunkers = [HTMLChunker]
 filters = [URLFilter,WikiWordFilter]
 tokenizer = get_tokenizer("en_US",chunkers,filters)
 count = 0
-for document in documents[:2000]:
+for document in documents:
 	try:
 		if document is not None:
 			lowered_document = document.strip().lower()
