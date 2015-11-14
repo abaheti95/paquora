@@ -84,7 +84,7 @@ print quoravocabulary
 topics = liwc.keys()
 num_topics = len(topics)
 num_words = len(quoravocabulary)
-eta = numpy.full(shape = (num_topics, num_words), dtype = float, fill_value = 0)
+eta = numpy.full(shape = (num_topics, num_words), dtype = float, fill_value = 0.01)
 for topic_number,topic in enumerate(topics):
 	liwc_words = liwc[topic]
 	print topic, "="
@@ -92,7 +92,7 @@ for topic_number,topic in enumerate(topics):
 	for word in intersection_words:
 		print word,
 		wordid = dictionary.token2id[word]
-		eta[topic_number][wordid] = 0.01
+		eta[topic_number][wordid] = collection_frequencies[wordid]
 	print
 	print
 print "eta parameter created"
