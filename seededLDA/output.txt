@@ -1,9 +1,9 @@
 Death
-States,K,United,for,
+
 Space
 
 Humans
-of,the,
+
 Social Processes
 
 Relativity
@@ -11,9 +11,9 @@ Relativity
 Auxiliary Verbs
 
 Perceptual Processes
-the,
+
 Prepositions
-and,
+
 Personal Pronouns
 
 Health
@@ -23,7 +23,7 @@ Common Verbs
 Future Tense
 
 Past Tense
-Quora,
+
 Body
 
 Function Words
@@ -35,23 +35,23 @@ Tentative
 Leisure
 
 First Person Plural Pronouns
-the,
+
 Third Person Plural Pronouns
 
 Inhibition
-None,
+Chinese,
 Hear
-I,
+
 Negations
 
 Nonfluencies
-our,we,
+
 Friends
 
 Positive Emotion
 
 Achievement
-is,n,
+
 Fillers
 
 Articles
@@ -65,11 +65,11 @@ Third Person Singular Pronoun
 Exclusive
 
 Biological Processes
-
+None,
 Certainty
 
 Work
-the,
+
 Motion
 
 Impersonal Pronouns
@@ -77,11 +77,11 @@ Impersonal Pronouns
 Sadness
 
 Ingestion
-to,you,
+
 Second Person Pronouns
-the,
+
 Time
-the,
+
 Swear Words
 
 Cognitive Processes
@@ -89,37 +89,37 @@ Cognitive Processes
 Negative Emotion
 
 Feel
-the,
+
 First Person Singular Pronouns
 
 Religion
 
 Family
-answer,question,questions,
+
 Inclusive
-languages,language,
+
 Quantifiers
 
 Money
 
 Causation
-the,
+
 Insight
 
 Assent
 
 Discrepancy
-
+New,York,
 Conjunctions
 
 Present Tense
 
 See
-the,
+
 Adverbs
 
 Numbers
-the,
+
 Anger
 
 Home

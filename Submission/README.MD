@@ -49,7 +49,7 @@ essay_count.py -:
 liwc.py:		extracts liwc words along with tags from mysql and creates its trie data structure 
 
 QuraDataSet:
------------
+------------
 
 	quora_user.csv:	This file contains users and corresponding answers to BFI10 personality score
 	ctrial.py:		This file crawls the Quora answers of users present in quora_user.csv and create a csv file corresponding to all the answers
