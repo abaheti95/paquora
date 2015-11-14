@@ -23,7 +23,7 @@ chunkers = [HTMLChunker]
 filters = [URLFilter,WikiWordFilter]
 tokenizer = get_tokenizer("en_US",chunkers,filters)
 count = 0
-for document in documents:
+for document in documents[:1000]:
 	try:
 		if document is not None:
 			lowered_document = document.strip().lower()
@@ -84,7 +84,7 @@ print quoravocabulary
 topics = liwc.keys()
 num_topics = len(topics)
 num_words = len(quoravocabulary)
-eta = numpy.full(shape = (num_topics, num_words), dtype = float, fill_value = 0)
+eta = numpy.full(shape = (num_topics, num_words), dtype = float, fill_value = 1/num_topics)
 for topic_number,topic in enumerate(topics):
 	liwc_words = liwc[topic]
 	print topic, "="
@@ -92,7 +92,7 @@ for topic_number,topic in enumerate(topics):
 	for word in intersection_words:
 		print word,
 		wordid = dictionary.token2id[word]
-		eta[topic_number][wordid] = 0.01
+		eta[topic_number][wordid] = 0.3
 	print
 	print
 print "eta parameter created"
@@ -100,8 +100,10 @@ print "eta parameter created"
 	running lda model
 '''
 print "lda process begins"
-ldamodel = gensim.models.ldamulticore.LdaMulticore(corpus, num_topics = num_topics, 
-	id2word = dictionary, passes = 20, eta = eta, workers = 8)
+# ldamodel = gensim.models.ldamulticore.LdaMulticore(corpus, num_topics = num_topics, 
+# 	id2word = dictionary, passes = 50, eta = eta, workers = 4, minimum_probability = 0.01)
+ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics = num_topics, 
+	id2word = dictionary, passes = 50, eta = eta, minimum_probability = 0.01)
 print "lda process done"
 
 '''
