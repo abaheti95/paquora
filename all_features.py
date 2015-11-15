@@ -474,6 +474,10 @@ def findEmoticonCount(essay):
 	'=)',
 	':O',
 	';-)'
+	'_/\_',
+	'*_*',
+	'(* .*)',
+	':-?'
 	]
 
 	count = 0
