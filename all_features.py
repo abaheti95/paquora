@@ -7,6 +7,8 @@ import string
 import csv
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
+import re
+
 
 words_custom = []
 sentence_list = []
@@ -371,6 +373,7 @@ def get_all_feature_labels():
 	feature_labels.append("negative_words")
 	# Functional words
 	feature_labels.append("functional_words")
+	feature_labels.append("emoticons")
 	return feature_labels
 
 def get_all_features(text):
@@ -429,4 +432,55 @@ def get_all_features(text):
 	# Functional words
 	functional_words = get_func_count(text)
 	features.append(functional_words)
+
+	emoticon_count = findEmoticonCount(essay)
+	features.append(emoticon_count)
 	return features
+
+
+
+def test_match(s,essay):
+	count = 0
+	if re.match(essay, s):
+		count = count + 1
+    return count
+
+def findEmoticonCount(essay)
+{
+	should_match = [
+    ':)',   # Single smile
+    ':(',   # Single frown
+    ':):)', # Two smiles
+    ':(:(', # Two frowns
+    ':):(', # Mix of a smile and a frown
+    '(*_*)',
+    ':">',
+    ';)',
+	':D',
+	':->',
+	':P',
+	'<3',
+	'</3',
+	':O',
+	'XD',
+	'>:(',
+	'D:<',
+	'=K',
+	':s',
+	';P',
+	'=)',
+	'=O)',
+	':-)',
+	':^)',
+	'=)',
+	':O',
+	';-)'
+	]
+
+	count = 0
+	for x in should_match: 
+		count = count + test_match(x,essay);
+
+	return count
+
+}
