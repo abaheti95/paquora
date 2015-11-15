@@ -110,6 +110,22 @@ def get_tag_words_dict():
 	liwc_db.close()
 	return t
 
+def save_expanded_liwc(liwc_words):
+	# takes input of tag:words dict
+	liwc_db = mysql.connector.connect(host="localhost",user="nlp",password="nlppassword",database="nlp")
+	cursor = liwc_db.cursor()
+
+	add_word = ("INSERT INTO LIWC_Expanded (word,type) VALUES (%s, %s)")
+	for tag in liwc_words.keys():
+		for word in liwc_words[tag]:
+			data_tuple = (word, tag)
+			cursor.execute(add_word, data_tuple)
+
+	liwc_db.commit()
+
+	cursor.close()
+	liwc_db.close()
+
 
 def test():
 	liwc_trie = create_trie_data_structure()

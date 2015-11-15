@@ -1,128 +1,127 @@
+Article
 
--------------------------------Tag is Article-------------------------------
-
--------------------------------Tag is Funct-------------------------------
+Funct
 twelve , quicker , seventies , billions , fifty , eighteen , thirteen , millions , everybody , thirties , twenty , negative , sixties , twenties , thousands , four-year , eighty , hundreds , fourteen , billion. , twentieth , sixty , sixteen , fifteen , thirty , anybody , equalize , nineteenth , towards , 
--------------------------------Tag is Affect-------------------------------
+Affect
 dangerous. , ashamed , difficult. , efficient. , scared. , screamed , thankful , hugged , inhibits , grateful , vulnerable. , kissed , reluctant , popular. , lonely. , efficient , disappointed , important. , devote , trusted. , shocked , useful. , weapons , careful. , devoting , valuable. , lower. , laughed , frustrated , easier , surprised , lowest , lowering , stupid. , raped , favourite , forgive , richest , murdered , smiled , faiths , friends , optimize , lower , angry. , hesitant , killed , wealthiest , favorite , easy. , convince , severe. , positive , warmer , jealous. , annoyed , amazed , 
--------------------------------Tag is CogMech-------------------------------
+CogMech
 questions , disciplines , correct. , purposes , inhibits , categorized , reluctant , everybody , accurate. , learnt , effective. , careful. , approximately , conservative , responsibilities , learned , duties , obvious. , find. , disciplines. , evaluate , forgive , refused , differentiate , conservatives , refuses , intends , realize , originates , forget. , realized , effective , hesitant , require , allows , anybody , positive , distinction , beliefs , learn. , 
--------------------------------Tag is Inhib-------------------------------
+Inhib
 disciplines. , hesitant , require , careful. , conservative , responsibilities , inhibits , duties , conservatives , refuses , refused , disciplines , reluctant , 
--------------------------------Tag is Negemo-------------------------------
+Negemo
 dangerous. , difficult. , scared. , screamed , inhibits , vulnerable. , reluctant , lonely. , shocked , raped , weapons , stupid. , frustrated , killed , lowest , lowering , murdered , ashamed , disappointed , lower. , lower , angry. , hesitant , severe. , jealous. , annoyed , 
--------------------------------Tag is Sad-------------------------------
+Sad
 lowest , lowering , lower , lonely. , disappointed , lower. , 
--------------------------------Tag is Bio-------------------------------
+Bio
 knees , shoulders , fatty , illness. , restaurants , fingers , tired. , raped , elbows , hugged , neurons , diabetes , vegetable , eyes. , neurons. , kissed , vegetables , shoulder. , 
--------------------------------Tag is Body-------------------------------
+Body
 knees , elbows , fatty , shoulders , fingers , neurons , eyes. , neurons. , shoulder. , 
--------------------------------Tag is Achiev-------------------------------
+Achiev
 effective , efficient. , efficient , effective. , important. , achieve. , kingdoms , purposes , responsibilities , accomplish. , conquered , enables , require , presidential , originates , 
--------------------------------Tag is Health-------------------------------
+Health
 illness. , fatty , tired. , diabetes , 
--------------------------------Tag is Sexual-------------------------------
+Sexual
 hugged , kissed , raped , 
--------------------------------Tag is Adverbs-------------------------------
+Adverbs
 quicker , 
--------------------------------Tag is Prep-------------------------------
+Prep
 towards , 
--------------------------------Tag is Relativ-------------------------------
+Relativ
 smaller , slower , century , west. , northeastern , hour. , metres , traveled , summer. , quicker , meters , verge , minutes. , south. , nations. , centuries , northeast , century. , months. , lower. , increase , decades. , morning. , month. , weeks , increasing , decades , southwest , lowest , lowering , higher. , towards , hours. , road. , inches , eastern , friday , southern , days. , southeast , increases , street. , kilometers , highest , stairs , travelled , lower , northern , countries , pulled , months , country. , days , countries. , nations , larger , miles , higher , minutes , 
--------------------------------Tag is Space-------------------------------
+Space
 smaller , country. , northeastern , metres , meters , verge , south. , nations. , northeast , northern , higher , lowest , lowering , higher. , towards , road. , inches , eastern , southern , southeast , street. , kilometers , highest , stairs , lower. , lower , countries , larger , west. , countries. , nations , miles , southwest , 
--------------------------------Tag is Time-------------------------------
+Time
 quicker , slower , century. , friday , century , summer. , hours. , minutes , hour. , months. , days , days. , decades. , month. , minutes. , months , weeks , decades , morning. , centuries , 
--------------------------------Tag is Work-------------------------------
+Work
 colleges , school. , schools , manages , college , graduated. , desktop , undergraduate , accomplish. , universities , learnt , graduate , responsibilities , types , learned , duties , achieve. , applications , legality , graduated , presidential , college. , professionals , compute , require , courses , learn. , businessman , businesses , 
--------------------------------Tag is Certain-------------------------------
+Certain
 everybody , accurate. , correct. , positive , distinction , obvious. , 
--------------------------------Tag is Assent-------------------------------
+Assent
 
--------------------------------Tag is Anger-------------------------------
+Anger
 dangerous. , angry. , annoyed , raped , weapons , murdered , stupid. , jealous. , frustrated , killed , 
--------------------------------Tag is Insight-------------------------------
+Insight
 find. , realized , learnt , categorized , effective , effective. , forgive , beliefs , differentiate , questions , evaluate , learned , realize , learn. , 
--------------------------------Tag is Posemo-------------------------------
+Posemo
 devote , thankful , hugged , warmer , grateful , popular. , kissed , efficient , positive , important. , efficient. , trusted. , useful. , careful. , devoting , valuable. , laughed , easy. , surprised , favourite , forgive , richest , smiled , faiths , friends , optimize , wealthiest , favorite , easier , convince , amazed , 
--------------------------------Tag is Past-------------------------------
+Past
 
--------------------------------Tag is Verbs-------------------------------
+Verbs
 
--------------------------------Tag is Money-------------------------------
+Money
 expensive. , dollars. , dollars , poorest , richest , businesses , businessman , wealthiest , 
--------------------------------Tag is Percept-------------------------------
+Percept
 cooler , colder , acids , harder , fingers , stared , screamed , warmer , eyes. , say. , roughly , saying. , 
--------------------------------Tag is Friends-------------------------------
+Friends
 girlfriend. , friends , boyfriend. , boyfriend , 
--------------------------------Tag is Social-------------------------------
+Social
 replied , married , sister. , sister-in-law , husband. , anybody , involve , sisters , persuade , questions , brother. , everybody , languages , pas , interacting , boyfriend. , grandmother , cultures , daughters , baby. , daughter-in-law , wife. , brothers , forgive , languages. , husbands , father. , refuses , say. , refused , friends , boyfriend , married. , daughter. , women. , divorced , citizens , language. , grandfather , girlfriend. , cultures. , wives , saying. , parents. , 
--------------------------------Tag is Motion-------------------------------
+Motion
 traveled , increase , increases , travelled , increasing , pulled , 
--------------------------------Tag is Cause-------------------------------
+Cause
 effective , effective. , allows , purposes , intends , originates , 
--------------------------------Tag is Leisure-------------------------------
+Leisure
 travelled , restaurants , easy. , traveled , 
--------------------------------Tag is Incl-------------------------------
+Incl
 
--------------------------------Tag is Home-------------------------------
+Home
 
--------------------------------Tag is Present-------------------------------
+Present
 
--------------------------------Tag is Humans-------------------------------
+Humans
 citizens , women. , baby. , 
--------------------------------Tag is Anx-------------------------------
+Anx
 hesitant , scared. , inhibits , ashamed , vulnerable. , reluctant , 
--------------------------------Tag is Relig-------------------------------
+Relig
 faiths , beliefs , gods , 
--------------------------------Tag is AuxVb-------------------------------
+AuxVb
 
--------------------------------Tag is Negate-------------------------------
+Negate
 negative , 
--------------------------------Tag is Ingest-------------------------------
+Ingest
 vegetable , vegetables , fatty , restaurants , 
--------------------------------Tag is Death-------------------------------
+Death
 murdered , killed , 
--------------------------------Tag is Quant-------------------------------
+Quant
 increase , increases , increasing , equalize , 
--------------------------------Tag is Tentat-------------------------------
+Tentat
 questions , approximately , anybody , hesitant , 
--------------------------------Tag is Conj-------------------------------
+Conj
 
--------------------------------Tag is Ipron-------------------------------
+Ipron
 everybody , anybody , 
--------------------------------Tag is Pronoun-------------------------------
+Pronoun
 everybody , anybody , 
--------------------------------Tag is Swear-------------------------------
+Swear
 
--------------------------------Tag is Hear-------------------------------
+Hear
 screamed , say. , saying. , 
--------------------------------Tag is Family-------------------------------
+Family
 daughter-in-law , husbands , wife. , pas , sister. , sister-in-law , married , husband. , wives , grandmother , sisters , daughter. , married. , father. , brother. , grandfather , parents. , daughters , brothers , 
--------------------------------Tag is See-------------------------------
+See
 eyes. , stared , 
--------------------------------Tag is Discrep-------------------------------
+Discrep
 
--------------------------------Tag is Numbers-------------------------------
+Numbers
 twelve , four-year , billions , fifty , eighteen , thirteen , millions , thirties , twenty , sixties , twenties , thousands , seventies , eighty , hundreds , fourteen , billion. , twentieth , sixty , sixteen , fifteen , thirty , nineteenth , 
--------------------------------Tag is Filler-------------------------------
+Filler
 
--------------------------------Tag is Feel-------------------------------
+Feel
 cooler , colder , harder , fingers , roughly , warmer , 
--------------------------------Tag is Excl-------------------------------
+Excl
 
--------------------------------Tag is Future-------------------------------
+Future
 
--------------------------------Tag is Nonflu-------------------------------
+Nonflu
 
--------------------------------Tag is SheHe-------------------------------
+SheHe
 
--------------------------------Tag is Ppron-------------------------------
+Ppron
 
--------------------------------Tag is I-------------------------------
+I
 
--------------------------------Tag is We-------------------------------
+We
 
--------------------------------Tag is You-------------------------------
+You
 
--------------------------------Tag is They-------------------------------
+They
