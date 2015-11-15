@@ -69,42 +69,43 @@ def create_classification_data(all_data, all_feature_labels):
 				dataset_rows.append(r)
 		writer.writerows(dataset_rows)
 
-def generate_scored_essay_data():
+def generate_scored_essay_data(text):
 	liwc_categories = liwc.get_list_of_liwc_categories()
 	liwc_trie = liwc.create_trie_data_structure()
 	
 	feature_labels = all_features.get_all_feature_labels()
 
-	head_row = []
-	iteration = 0
-	with open(essay_data_file_path, 'r', encoding='utf-8') as csvinput:
-		with open(essay_data_output_path, 'w') as csvoutput:
-			writer = csv.writer(csvoutput)
-			reader = csv.reader(csvinput)
-			print("Printing Here!!")
-			print(reader)
-			head_row = next(reader)
-			all_data = []
-			head_row.extend(liwc_categories)
-			head_row.extend(feature_labels)
-			all_data.append(head_row)
-			for row in reader:
+	# head_row = []
+	# iteration = 0
+	# with open(essay_data_file_path, 'r', encoding='utf-8') as csvinput:
+	# 	with open(essay_data_output_path, 'w') as csvoutput:
+	# 		writer = csv.writer(csvoutput)
+	# 		reader = csv.reader(csvinput)
+	# 		print("Printing Here!!")
+	# 		print(reader)
+	# 		head_row = next(reader)
+	all_data = []
+	head_row.extend(liwc_categories)
+	head_row.extend(feature_labels)
+	# all_data.append(head_row)
+			# for row in reader:
 				# compute LIWC Counts for individual categories
-				scores = compute_scores_for_essays(row[1], liwc_categories, liwc_trie)
-				features = all_features.get_all_features(row[1])
-				dummy_row = row
-				dummy_row.extend(scores)
-				dummy_row.extend(features)
-				all_data.append(dummy_row)
-				# if DEBUG:
-					# print(dummy_row)
-				print("essay", iteration)
-				iteration += 1
-			all_feature_labels = []
-			all_feature_labels.extend(liwc_categories)
-			all_feature_labels.extend(feature_labels)
-			create_classification_data(all_data, all_feature_labels)
-			writer.writerows(all_data)
+	scores = compute_scores_for_essays(text, liwc_categories, liwc_trie)
+	features = all_features.get_all_features(text)
+	dummy_row = row
+	dummy_row.extend(scores)
+	dummy_row.extend(features)
+	all_data.append(dummy_row)
+	# if DEBUG:
+		# print(dummy_row)
+	print("essay", iteration)
+	iteration += 1
+	all_feature_labels = []
+	all_feature_labels.extend(liwc_categories)
+	all_feature_labels.extend(feature_labels)
+	create_classification_data(all_data, all_feature_labels)
+	return all_data
+	# writer.writerows(all_data)
 
 def check_word_tokenizer():
 	liwc_categories = liwc.get_list_of_liwc_categories()
@@ -138,11 +139,13 @@ def check_pos_tagging():
 			sleep(10)
 
 
-def main():
+def main(text = None):
+	if text is None:
+		return
 	all_features.init()
-	generate_scored_essay_data()
+	print generate_scored_essay_data(text)
 	# check_word_tokenizer()
 	# check_pos_tagging()
 
 if __name__ == '__main__':
-	main()
+	main("I want to sleep and play all day")

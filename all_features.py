@@ -443,10 +443,9 @@ def test_match(s,essay):
 	count = 0
 	if re.match(essay, s):
 		count = count + 1
-    return count
+	return count
 
-def findEmoticonCount(essay)
-{
+def findEmoticonCount(essay):
 	should_match = [
     ':)',   # Single smile
     ':(',   # Single frown
@@ -483,4 +482,3 @@ def findEmoticonCount(essay)
 
 	return count
 
-}
