@@ -1,15 +1,15 @@
-# import mysql.connector
-import MySQLdb as mdb
+import mysql.connector
+# import MySQLdb as mdb
 from trie import StringTrie
 
 DEBUG = False
 def create_trie_data_structure():
 	# open database
-	liwc_db = mdb.connect(host="localhost",user="nlp",password="nlppassword",database="nlp")
+	liwc_db = mysql.connector.connect(host="localhost",user="nlp",password="nlppassword",database="nlp")
 	cursor = liwc_db.cursor()
 	t = StringTrie();
 	
-	cursor.execute("SELECT * FROM LIWC")
+	cursor.execute("SELECT * FROM LIWC_New_Expanded")
 	liwc_data_list = cursor.fetchall()
 	# generating Trie data structure
 	if DEBUG:

@@ -51,10 +51,15 @@ def init():
 def get_pos_score(text):
 	words = words_custom
 	count = 0
+	score = 0.0
 	for word in words:
 		if word in words_posscore:
-			count += words_posscore['word']
-	return count
+			count += 1
+			score += words_posscore[word]
+	if count != 0:
+		return (score/count)
+	else:
+		return 0
 
 def get_neg_count(text):
 	words = words_custom
@@ -219,10 +224,49 @@ def getWrongWordCount(text):
 	# print("Wrong word count : ",wrongCount)
 	return wrongCount
 
-def getEmoticonCount(sentence):
-	# TODO : This has to be done based on the quora data
-	return 0
+def test_match(s,essay):
+	return essay.count(s)
 
+def getEmoticonCount(text):
+	should_match = [
+	':)',   # Single smile
+	':(',   # Single frown
+	':):)', # Two smiles
+	':(:(', # Two frowns
+	':):(', # Mix of a smile and a frown
+	'(*_*)',
+	':">',
+	';)',
+	':D',
+	':->',
+	':P',
+	'<3',
+	'</3',
+	':O',
+	'XD',
+	'>:(',
+	'D:<',
+	'=K',
+	':s',
+	';P',
+	'=)',
+	'=O)',
+	':-)',
+	':^)',
+	'=)',
+	':O',
+	';-)'
+	'_/\_',
+	'*_*',
+	'(* .*)',
+	':-?'
+	]
+
+	count = 0
+	for x in should_match: 
+		count = count + test_match(x,text);
+
+	return count
 # Author Rahul
 # Contributions : TypeByTokenRatio
 def gettr_ratio(text):
@@ -348,7 +392,7 @@ def get_all_feature_labels():
 	feature_labels.append("f_measure")
 	# I-Measure
 	feature_labels.append("i_measure")
-	feature_labels.append("interjection_count")
+	# feature_labels.append("interjection_count")
 	feature_labels.append("wrong_word_count")
 	# Words Per Sentence
 	feature_labels.append("words_per_sentence")
@@ -357,8 +401,8 @@ def get_all_feature_labels():
 	feature_labels.append("count_7")
 	feature_labels.append("count_8")
 	feature_labels.append("count_9")
-	# Tentativity
-	feature_labels.append("tentativity")
+	# # Tentativity
+	# feature_labels.append("tentativity")
 	# Tense Count
 	feature_labels.append("number_past_tense")
 	feature_labels.append("number_present_tense")
@@ -368,12 +412,12 @@ def get_all_feature_labels():
 	feature_labels.append("vocabulary_richness")
 	# Positive score
 	feature_labels.append("positive_score")
-	# Postive and negative words
-	feature_labels.append("positive_words")
-	feature_labels.append("negative_words")
-	# Functional words
-	feature_labels.append("functional_words")
-	feature_labels.append("emoticons")
+	# # Postive and negative words
+	# feature_labels.append("positive_words")
+	# feature_labels.append("negative_words")
+	# # Functional words
+	# feature_labels.append("functional_words")
+	# feature_labels.append("emoticons")
 	return feature_labels
 
 def get_all_features(text):
@@ -397,7 +441,7 @@ def get_all_features(text):
 	# I-Measure
 	i_measure, interjection_count, wrong_word_count = getIFMeasure(text)
 	features.append(i_measure)
-	features.append(interjection_count / number_words)
+	# features.append(interjection_count / number_words)
 	features.append(wrong_word_count / number_words)
 	# Words Per Sentence
 	words_per_sentence = getWordsPerSentence(text)
@@ -408,9 +452,9 @@ def get_all_features(text):
 	features.append(count_7 / number_words)
 	features.append(count_8 / number_words)
 	features.append(count_9 / number_words)
-	# Tentativity
-	tentativity = gettentMeasure(text)
-	features.append(tentativity / number_words)
+	# # Tentativity
+	# tentativity = gettentMeasure(text)
+	# features.append(tentativity / number_words)
 	# Tense Count
 	number_past_tense, number_present_tense = tense_count(text)
 	features.append(number_past_tense / number_words)
@@ -425,64 +469,19 @@ def get_all_features(text):
 	positive_score = get_pos_score(text)
 	features.append(positive_score)
 	# Postive and negative words
-	positive_words = get_pos_count(text)
-	negative_words = get_neg_count(text)
-	features.append(positive_words)
-	features.append(negative_words)
-	# Functional words
-	functional_words = get_func_count(text)
-	features.append(functional_words)
+	# positive_words = get_pos_count(text)
+	# negative_words = get_neg_count(text)
+	# features.append(positive_words)
+	# features.append(negative_words)
+	# # Functional words
+	# functional_words = get_func_count(text)
+	# features.append(functional_words)
 
-	emoticon_count = findEmoticonCount(essay)
-	features.append(emoticon_count)
+	# emoticon_count = findEmoticonCount(essay)
+	# features.append(emoticon_count)
 	return features
 
 
 
-def test_match(s,essay):
-	count = 0
-	if re.match(essay, s):
-		count = count + 1
-	return count
 
-def findEmoticonCount(essay):
-	should_match = [
-    ':)',   # Single smile
-    ':(',   # Single frown
-    ':):)', # Two smiles
-    ':(:(', # Two frowns
-    ':):(', # Mix of a smile and a frown
-    '(*_*)',
-    ':">',
-    ';)',
-	':D',
-	':->',
-	':P',
-	'<3',
-	'</3',
-	':O',
-	'XD',
-	'>:(',
-	'D:<',
-	'=K',
-	':s',
-	';P',
-	'=)',
-	'=O)',
-	':-)',
-	':^)',
-	'=)',
-	':O',
-	';-)'
-	'_/\_',
-	'*_*',
-	'(* .*)',
-	':-?'
-	]
-
-	count = 0
-	for x in should_match: 
-		count = count + test_match(x,essay);
-
-	return count
 
